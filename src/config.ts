@@ -67,7 +67,7 @@ const DEFAULT_CONFIG: MemoryConfig = {
 
 export const DEFAULT_CONFIG_PATH = path.join(
   AGENT_ROOT,
-  "hermes-memory-config.json",
+  "lpb-memory-config.json",
 );
 
 export function loadConfig(configPath = DEFAULT_CONFIG_PATH): MemoryConfig {
