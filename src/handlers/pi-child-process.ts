@@ -6,7 +6,8 @@ import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import type { MemoryConfig, ThinkingLevel } from "../types.js";
-import { AGENT_ROOT, logMemory } from "../constants.js";
+import { AGENT_ROOT } from "../paths.js";
+import { logMemory } from "../constants.js";
 
 type ChildLlmConfig = Pick<MemoryConfig, "llmModelOverride" | "llmThinkingOverride" | "childExtensionPaths">;
 
