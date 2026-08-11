@@ -183,6 +183,8 @@ export async function triggerConsolidation(
         llmThinkingOverride: undefined,
       };
 
+      logMemory(`consolidation: batch ${idx + 1} — modelOverride=${subprocessConfig.llmModelOverride ?? 'none'}, thinkingOverride=${subprocessConfig.llmThinkingOverride ?? 'none'}`);
+
       try {
         const result = await execChildPrompt(pi, batchPrompt, subprocessConfig, {
           signal,

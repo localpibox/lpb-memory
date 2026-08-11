@@ -137,7 +137,9 @@ async function runSubprocessReview(
   // operation and contributes to context overflow when the prompt is large.
   // This mirrors the Qwen compaction mitigation (disable thinking during
   // summary generation).
+  // Timeout set to configurable reviewTimeoutMs to accommodate cold NPU model loads.
   const subprocessConfig = { ...config };
+  logMemory(`backgroundReview subprocess: model=${config.llmModelOverride ?? 'inherited'}, thinking=${config.llmThinkingOverride ?? 'inherited'}`);
   return execChild(pi, prompt, subprocessConfig, {
     signal: undefined,
     timeoutMs: config.reviewTimeoutMs ?? 300000,
