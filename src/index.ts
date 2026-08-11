@@ -156,10 +156,16 @@ export default function (pi: ExtensionAPI) {
   // This ensures background review, session flush, correction detection,
   // and consolidation all use the same model/auth as the parent session.
   // Uses a function so it picks up the model AFTER session_start fires.
-  const getSharedConfig = () =>
-    currentModelRef && currentModelRef.provider !== "unknown" && currentModelRef.id !== "unknown"
+  const getSharedConfig = () => {
+    const hasUserOverride = typeof config.llmModelOverride === "string" && config.llmModelOverride.trim().length > 0;
+    if (hasUserOverride) {
+      // Preserve user-configured model override (e.g., for NPU-backed FLM models)
+      return { ...config, llmModelOverride: config.llmModelOverride.trim() };
+    }
+    return currentModelRef && currentModelRef.provider !== "unknown" && currentModelRef.id !== "unknown"
       ? { ...config, llmModelOverride: `${currentModelRef.provider}/${currentModelRef.id}` }
       : { ...config };
+  };
 
   // ── 1. Load memory from disk on session start ──
   pi.on("session_start", async (_event, ctx) => {

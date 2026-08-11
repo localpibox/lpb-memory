@@ -40,7 +40,7 @@ export function registerIndexSessionsCommand(
         // Use the configured memoryDir (where the main sessions.db lives) so
         // indexing targets the same database as the live session index. Falls
         // back to the extension's default data dir if not supplied.
-        const dbMemoryDir = memoryDir?.trim() || path.join(AGENT_ROOT, 'pi-hermes-memory');
+        const dbMemoryDir = memoryDir?.trim() || path.join(AGENT_ROOT, 'lpb-memory');
         const dbManager = new DatabaseManager(dbMemoryDir);
 
         try {

@@ -13,7 +13,7 @@ import * as fs from "node:fs";
 import * as path from "node:path";
 import * as os from "node:os";
 
-const DEFAULT_LOG_DIR = path.join(os.homedir(), ".pi", "agent", "pi-hermes-memory");
+const DEFAULT_LOG_DIR = path.join(os.homedir(), ".pi", "agent", "lpb-memory");
 const MAX_LOG_SIZE = 5 * 1024 * 1024; // 5MB
 
 let logDir: string = DEFAULT_LOG_DIR;

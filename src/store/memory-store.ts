@@ -71,7 +71,7 @@ export class MemoryStore {
   // ─── Path helpers ───
 
   private get memoryDir(): string {
-    return this.config.memoryDir ?? path.join(AGENT_ROOT, "pi-hermes-memory");
+    return this.config.memoryDir ?? path.join(AGENT_ROOT, "lpb-memory");
   }
 
   private pathFor(target: "memory" | "user" | "failure"): string {

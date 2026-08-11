@@ -1,7 +1,7 @@
 /**
  * SkillStore — procedural memory stored as Pi-native skills.
  *
- * Global skills live in ~/.pi/agent/pi-hermes-memory/skills/<slug>/SKILL.md.
+ * Global skills live in ~/.pi/agent/lpb-memory/skills/<slug>/SKILL.md.
  * Project skills live in ~/.pi/agent/<projectsMemoryDir>/<project>/skills/<slug>/SKILL.md.
  */
 
@@ -163,13 +163,13 @@ export class SkillStore {
 
   constructor(options: SkillStoreOptions = {}) {
     const agentRoot = AGENT_ROOT;
-    this.globalSkillsDir = options.globalSkillsDir ?? path.join(agentRoot, "pi-hermes-memory", "skills");
+    this.globalSkillsDir = options.globalSkillsDir ?? path.join(agentRoot, "lpb-memory", "skills");
     this.piGlobalSkillsDir = options.piGlobalSkillsDir ?? path.join(agentRoot, "skills");
     this.projectSkillsDir = options.projectSkillsDir ?? null;
     this.projectName = options.projectName ?? null;
     this.legacySkillsDir = options.legacySkillsDir ?? path.join(agentRoot, "memory", "skills");
     this.migrationSentinelPath = options.migrationSentinelPath
-      ?? path.join(agentRoot, "pi-hermes-memory", ".skills-migrated-to-extension-storage");
+      ?? path.join(agentRoot, "lpb-memory", ".skills-migrated-to-extension-storage");
   }
 
   getGlobalSkillsDir(): string {
