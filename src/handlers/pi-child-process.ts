@@ -6,7 +6,7 @@ import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 import type { MemoryConfig, ThinkingLevel } from "../types.js";
-import { AGENT_ROOT } from "../paths.js";
+import { AGENT_ROOT, logMemory } from "../constants.js";
 
 type ChildLlmConfig = Pick<MemoryConfig, "llmModelOverride" | "llmThinkingOverride" | "childExtensionPaths">;
 
@@ -370,6 +370,11 @@ export function buildChildPiPromptArgs(
   const model = normalizedModelOverride(config);
   const thinking = effectiveThinkingOverride(config);
 
+  // DEBUG: log what we're about to pass to pi -p
+  if (model) {
+    logMemory(`execChildPrompt: model=${model}, thinking=${thinking ?? 'off'}`);
+  }
+
   // Skip --model for invalid identifiers (e.g., "unknown/unknown").
   // These appear when the parent session hasn't fully loaded its provider
   // yet — falling back to Pi's default model is safer than crashing.
@@ -589,6 +594,8 @@ async function execChildPromptInner(
         options.timeoutMs,
         cancellationPath,
       );
+      // DEBUG: log the actual args being passed to pi.exec
+      logMemory(`execChildPrompt: command=${invocation.command}, args=${JSON.stringify(invocation.args)}`);
       const result = await pi.exec(invocation.command, invocation.args, execOptions) as PiExecResult;
       if (
         result.code === 0 ||
