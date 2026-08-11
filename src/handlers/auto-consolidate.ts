@@ -77,19 +77,28 @@ function splitIntoBatches(entries: string[], maxChars: number): string[][] {
 /**
  * Filter out circular meta-entries that describe the consolidation process itself.
  * These are self-referential entries (e.g., "consolidation hangs because...") that
- * get added during debugging sessions and create a feedback loop: more entries → 
+ * get added during debugging sessions and create a feedback loop: more entries →
  * bigger prompt → more failures → more meta entries.
+ *
+ * Note: This filter is a defensive measure. The primary fix is in the review prompt
+ * which instructs the agent not to create entries about the consolidation/repair process.
+ * Entries about the tool should only be created for genuine environmental facts
+ * (e.g., "consolidation is slow on this hardware") not for debugging commentary
+ * (e.g., "consolidation hangs because timeout is too short").
  */
 function filterConsolidationEntries(entries: string[]): string[] {
   const metaPatterns = [
-    /consolidation.*(hang|timeout|subprocess|process)/i,
-    /enable_thinking.*reduce/i,
-    /reasoning_effort.*parameter/i,
-    /max_tokens.*(too small|too large|insufficient|budget)/i,
-    /Qwen3.*enter.*(infinite|loop|thinking)/i,
-    /deterministic pre-filter/i,
-    /recovery file.*(accumulate|pile|cleanup|stale)/i,
-    /subprocess.*(timeout|hanging|hang)/i,
+    // Only filter entries that are clearly debugging commentary about the tool
+    // itself failing, not legitimate environmental observations.
+    /consolidation.*(hang|timeout|stuck|freezes|blocks.*session|causes.*hang|prevents.*consolidation|causes.*overflow)/i,
+    /consolidation.*(subprocess|process).*(fail|hang|timeout|error|crash|die|kill|not.*work|broken|stuck)/i,
+    /enable_thinking.*(reduce|lower|disable|turn.*off|not.*enable|remove)/i,
+    /reasoning_effort.*(too small|too large|insufficient|needs|should|adjust)/i,
+    /max_tokens.*(too small|too large|insufficient|budget|increase|decrease)/i,
+    /Qwen3.*(enter|get|fall).*(infinite|endless|runaway).*(loop|thinking|reasoning)/i,
+    /deterministic pre-filter.*(problem|issue|limitation|bug|fail|skip|break|wrong)/i,
+    /recovery file.*(accumulate|pile|stale|wrong|bad|not.*delete|orphan)/i,
+    /subprocess.*(timeout|hang|stuck|fail|error).*(too.*long|exceed|exceeded|never.*complete|broke|not.*work|broken)/i,
   ];
   return entries.filter(entry => !metaPatterns.some(p => p.test(entry)));
 }

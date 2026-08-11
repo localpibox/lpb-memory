@@ -222,6 +222,16 @@ For failures, include: what was tried, why it failed, what error occurred, and w
 
 **Skills**: Do NOT create or modify skills in this background review. Procedural skills are managed explicitly by the main agent through the skill_manage tool during normal work, not by this review subprocess.
 
+**IMPORTANT**: Do NOT create entries about the memory/consolidation/repair process itself.
+This includes entries like:
+- "consolidation hangs because timeout is too short"
+- "enable_thinking should be reduced for consolidation"
+- "subprocess failed during review"
+- "max_tokens too small for consolidation prompt"
+These are debugging commentary about the tool, not durable facts worth saving.
+They create a feedback loop: more debug entries → bigger prompt → more tool failures → more debug entries.
+Only create entries about genuine environmental facts (e.g., "consolidation takes ~2min on this hardware").
+
 Only act if there's something genuinely worth saving. If nothing stands out, just say 'Nothing to save.' and stop.`;
 
 // ─── Shared JSON operations schema for direct (in-process) completions ───
@@ -280,6 +290,8 @@ Each entry shows when it was created and last referenced in HTML comments (<!-- 
 
 Express a merge as "remove" operations for the entries being dropped plus one "add" operation for the new merged entry. Be aggressive about merging — less is more. Every operation MUST use the exact target given to you in the user message; do not touch any other target.
 
+IMPORTANT: Do NOT create entries about the consolidation process itself (e.g., "consolidation hangs", "max_tokens too small"). These are debugging commentary that create a feedback loop.
+
 ${DIRECT_MEMORY_OPERATIONS_SCHEMA}`;
 
 // ─── Direct (in-process) correction-save prompt — used by correction-detector.ts. ───
@@ -291,6 +303,8 @@ Priority:
 3. Environment fact the agent got wrong
 
 If this contradicts an existing entry, use a "replace" operation to update it instead of "add".
+
+IMPORTANT: Do NOT create entries about the memory/consolidation/repair process itself.
 
 ${DIRECT_MEMORY_OPERATIONS_SCHEMA}
 
