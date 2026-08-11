@@ -75,7 +75,7 @@ interface ResolveChildPiInvocationOptions {
 const OVERRIDE_FAILURE_SUBJECT = /\b(model|provider|thinking)\b/i;
 const OVERRIDE_FAILURE_REASON = /\b(not found|unknown|invalid|unsupported|unavailable|unrecognized|no match|no matches|cannot resolve|failed to resolve)\b/i;
 
-// Resolve the path to pi-hermes-memory's own extension entry point.
+// Resolve the path to lpb-memory's own extension entry point.
 // Used to pass -e <path> to child subprocesses so they only load this
 // extension instead of all plugins from settings.json.
 const OWN_EXTENSION_PATH: string = (() => {
@@ -131,7 +131,7 @@ export function inheritedExtensionArgs(argv: string[] = process.argv.slice(2)): 
 // provider back to its extension file, so we can't ask pi "what adapter is
 // active" directly. Instead we mirror pi's OWN static package-discovery
 // convention (package.json -> "pi": { "extensions": [...] }, the same field
-// pi-hermes-memory's own package.json declares) and match sibling package
+// lpb-memory's own package.json declares) and match sibling package
 // names against a naming convention, so a future xai-oauth-adapter or
 // pi-codex-oauth-adapter is picked up automatically without a code change
 // here — no code execution, just JSON reads of sibling package.json files.
@@ -273,9 +273,9 @@ function scanRootForProviderExtensions(root: string): string[] {
 
 // `roots` is overridable so tests can point this at fixture directories
 // instead of the real sibling-packages trees. Two roots are scanned by
-// default: packages installed alongside pi-hermes-memory's own package
+// default: packages installed alongside lpb-memory's own package
 // (the common npm-managed-extensions layout), and AGENT_ROOT's npm
-// directory (covers pi-hermes-memory being loaded from elsewhere, e.g. a
+// directory (covers lpb-memory being loaded from elsewhere, e.g. a
 // local dev checkout via -e, while the adapter is still npm-managed).
 export function detectAuthAdapterExtensionPaths(roots?: string[]): string[] {
   const searchRoots = roots ?? [

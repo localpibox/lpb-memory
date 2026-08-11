@@ -595,7 +595,7 @@ async function migrateDatabaseGeneration(
 
 /**
  * Move legacy extension assets from ~/.pi/agent/memory into
- * ~/.pi/agent/pi-hermes-memory. Existing destination files win.
+ * ~/.pi/agent/lpb-memory. Existing destination files win.
  */
 export async function migrateExtensionRoot(
   legacyRoot: string,

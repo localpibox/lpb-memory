@@ -23,7 +23,7 @@ function writeEntries(filePath: string, entries: string[]): void {
 }
 
 function isLegacyProjectDir(agentRoot: string, projectsMemoryDir: string, name: string): boolean {
-  if (name === "memory" || name === "pi-hermes-memory" || name === "skills" || name === projectsMemoryDir) return false;
+  if (name === "memory" || name === "lpb-memory" || name === "skills" || name === projectsMemoryDir) return false;
   if (name.startsWith(".")) return false;
 
   const dir = path.join(agentRoot, name);

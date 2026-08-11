@@ -164,7 +164,7 @@ export function formatBetterSqlite3AbiError(options: {
     : "Automatic rebuild was not attempted.";
 
   return [
-    "pi-hermes-memory could not load the native better-sqlite3 module for this Node runtime.",
+    "lpb-memory could not load the native better-sqlite3 module for this Node runtime.",
     `Runtime: ${runtime}`,
     `Module: ${location}`,
     `Original error: ${original}`,

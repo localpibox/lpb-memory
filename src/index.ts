@@ -88,7 +88,7 @@ export default function (pi: ExtensionAPI) {
 
   const agentRoot = AGENT_ROOT;
   const legacyGlobalDir = path.join(agentRoot, "memory");
-  const defaultGlobalDir = path.join(agentRoot, "pi-hermes-memory");
+  const defaultGlobalDir = path.join(agentRoot, "lpb-memory");
 
   const configuredMemoryDir = config.memoryDir?.trim();
   const pointsToLegacyMemoryDir = configuredMemoryDir
