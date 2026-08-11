@@ -90,11 +90,16 @@ export const DEFAULT_NUDGE_INTERVAL = 10;
 export const DEFAULT_FLUSH_MIN_TURNS = 6;
 export const DEFAULT_NUDGE_TOOL_CALLS = 15;
 // Rolling window of recent message parts for the review prompt. A fixed window
-// prevents unbounded prompt growth in long sessions. 100 parts ≈ 50 turns
-// (user+assistant pairs), typically 20-50KB of text — enough context to detect
-// patterns, corrections, and failures without exceeding LLM context limits.
-export const DEFAULT_REVIEW_RECENT_MESSAGES = 100;
-export const DEFAULT_FLUSH_RECENT_MESSAGES = 0;
+// prevents unbounded prompt growth in long sessions. 50 parts ≈ 25 turns
+// (user+assistant pairs), typically 5-15KB of text — enough context to detect
+// patterns, corrections, and failures without overwhelming local LLMs.
+export const DEFAULT_REVIEW_RECENT_MESSAGES = 50;
+// Rolling window for session flush conversation snapshot. A hard limit prevents
+// flush prompts from growing unbounded in long sessions. 30 parts ≈ 15 turns
+// (user+assistant pairs), typically 3-10KB — enough to capture recent context
+// for the final save without risking overflow during compaction.
+// Default: 0 = unlimited (dangerous in long sessions with large tool outputs).
+export const DEFAULT_FLUSH_RECENT_MESSAGES = 30;
 export const DEFAULT_CONSOLIDATION_TIMEOUT_MS = 300000;
 export const DEFAULT_FAILURE_INJECTION_MAX_AGE_DAYS = 7;
 export const DEFAULT_FAILURE_INJECTION_MAX_ENTRIES = 5;
