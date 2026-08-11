@@ -66,6 +66,8 @@ export interface MemoryConfig {
   llmThinkingOverride?: ThinkingLevel;
   /** Extra extension entry paths required by child Pi processes, such as provider auth adapters. */
   childExtensionPaths?: string[];
+  /** Timeout in milliseconds for background review subprocess and direct calls. Default: 300000 (5 min) */
+  reviewTimeoutMs?: number;
   /** Strategy when memory is full. Default: auto-consolidate */
   memoryOverflowStrategy?: MemoryOverflowStrategy;
   /** Legacy alias for memoryOverflowStrategy. Default: true */

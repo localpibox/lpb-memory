@@ -109,6 +109,7 @@ Configuration lives in `lpb-memory-config.json` (sourced from
   "reviewTransport": "subprocess",
   "llmModelOverride": null,
   "llmThinkingOverride": "low",
+  "reviewTimeoutMs": 300000,
   "consolidationTimeoutMs": 300000,
   "memoryPolicyStyle": "policy-only"
 }
@@ -116,10 +117,11 @@ Configuration lives in `lpb-memory-config.json` (sourced from
 
 | Setting | Values | Default | Description |
 |---|---|---|---|
-| `reviewTransport` | `"subprocess"`, `"inline"` | `"subprocess"` | How background reviews execute |
+| `reviewTransport` | `"subprocess"`, `"direct"` | `"subprocess"` | How background reviews execute |
 | `llmModelOverride` | `null` or `"provider/modelId"` | `null` | Model for review sessions |
 | `llmThinkingOverride` | `"off"`, `"low"`, `"medium"`, `"high"` | `"low"` | Thinking level for reviews |
 | `consolidationTimeoutMs` | milliseconds | `300000` (5 min) | Timeout for consolidation |
+| `reviewTimeoutMs` | milliseconds | `300000` (5 min) | Timeout for background review subprocess and direct calls — tune for NPU cold load times |
 | `memoryPolicyStyle` | `"full"`, `"compact"`, `"custom"`, `"none"` | `"policy-only"` | System prompt verbosity |
 
 ## Development

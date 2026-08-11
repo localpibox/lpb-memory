@@ -140,7 +140,7 @@ async function runSubprocessReview(
   const subprocessConfig = { ...config };
   return execChild(pi, prompt, subprocessConfig, {
     signal: undefined,
-    timeoutMs: 120000,
+    timeoutMs: config.reviewTimeoutMs ?? 300000,
   });
 }
 
@@ -292,7 +292,7 @@ export function setupBackgroundReview(
             ctx as Pick<ExtensionContext, "model" | "modelRegistry">,
             store,
             projectStore,
-            { userPrompt: directPrompt, systemPrompt: DIRECT_REVIEW_SYSTEM_PROMPT, config: reviewConfig, timeoutMs: 120000 },
+            { userPrompt: directPrompt, systemPrompt: DIRECT_REVIEW_SYSTEM_PROMPT, config: reviewConfig, timeoutMs: reviewConfig.reviewTimeoutMs ?? 300000 },
             dbManager,
             projectName,
           );

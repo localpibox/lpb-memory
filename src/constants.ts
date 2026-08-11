@@ -101,6 +101,7 @@ export const DEFAULT_REVIEW_RECENT_MESSAGES = 50;
 // Default: 0 = unlimited (dangerous in long sessions with large tool outputs).
 export const DEFAULT_FLUSH_RECENT_MESSAGES = 30;
 export const DEFAULT_CONSOLIDATION_TIMEOUT_MS = 300000;
+export const DEFAULT_REVIEW_TIMEOUT_MS = 300000;
 export const DEFAULT_FAILURE_INJECTION_MAX_AGE_DAYS = 7;
 export const DEFAULT_FAILURE_INJECTION_MAX_ENTRIES = 5;
 
