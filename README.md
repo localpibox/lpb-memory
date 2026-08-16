@@ -6,7 +6,7 @@
 
 </div>
 
-> **⚡ [← Back to LocalPibox](https://github.com/localpibox/localpibox)** — project overview, architecture, and the full stack.
+> **⚡ [← Back to LocalPibox](https://github.com/lpb-stack/localpibox)** — project overview, architecture, and the full stack.
 
 ---
 
@@ -44,7 +44,7 @@ extension fixes that.
 
 ```bash
 # Install from LocalPibox fork
-pi install git:github.com/localpibox/lpb-memory@main
+pi install git:github.com/lpb-stack/lpb-memory@main
 
 # Index your past sessions (one-time)
 /memory-index-sessions
@@ -127,7 +127,7 @@ Configuration lives in `lpb-memory-config.json` (sourced from
 ## Development
 
 ```bash
-git clone https://github.com/localpibox/lpb-memory.git
+git clone https://github.com/lpb-stack/lpb-memory.git
 cd lpb-memory
 npm install
 npm run check

@@ -31,7 +31,7 @@ Key components:
 ### Setup
 
 ```bash
-git clone https://github.com/localpibox/lpb-memory.git
+git clone https://github.com/lpb-stack/lpb-memory.git
 cd lpb-memory
 npm install
 npm run check
@@ -68,7 +68,7 @@ If you want to customize the memory extension:
    ```
 4. **Repoint** any existing installation:
    ```bash
-   pi remove git:github.com/localpibox/lpb-memory
+   pi remove git:github.com/lpb-stack/lpb-memory
    pi install git:github.com/<you>/lpb-memory@<your-branch>
    ```
 
@@ -103,14 +103,14 @@ in different configurations, please share:
 - **Configuration** — settings that made things reliable
 
 You can share via:
-- **GitHub Issues** — [localpibox/lpb-memory/issues](https://github.com/localpibox/lpb-memory/issues)
-- **GitHub Discussions** — general stack: [localpibox/localpibox](https://github.com/localpibox/localpibox)
+- **GitHub Issues** — [localpibox/lpb-memory/issues](https://github.com/lpb-stack/lpb-memory/issues)
+- **GitHub Discussions** — general stack: [localpibox/localpibox](https://github.com/lpb-stack/localpibox)
 
 ## Reporting Issues
 
-- **Extension bugs** → [localpibox/lpb-memory/issues](https://github.com/localpibox/lpb-memory/issues)
+- **Extension bugs** → [localpibox/lpb-memory/issues](https://github.com/lpb-stack/lpb-memory/issues)
 - **Original Hermes Memory** → [chandra447/pi-hermes-memory/issues](https://github.com/chandra447/pi-hermes-memory/issues)
-- **Stack configuration** → [localpibox/devstack/issues](https://github.com/localpibox/devstack/issues)
+- **Stack configuration** → [localpibox/devstack/issues](https://github.com/lpb-stack/devstack/issues)
 
 ## Communication
 
